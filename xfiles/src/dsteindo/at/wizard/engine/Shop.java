@@ -1,6 +1,7 @@
 package dsteindo.at.wizard.engine;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -23,15 +24,11 @@ public class Shop {
 
     public void initializeSpells() {
         int totalAvailable = Registry.calendar.entries.size();
-        availableSpells = new ArrayList<>();
-        Random random = new Random();
         List<Spell> spells = new ArrayList<>();
         spells.addAll(Registry.spells.offensiveSpells);
         spells.addAll(Registry.spells.defensiveSpells);
-        for (int i = 0; i < totalAvailable; i++) {
-            int selected = random.nextInt(spells.size());
-            availableSpells.add(spells.remove(selected));
-        }
+        Collections.shuffle(spells);
+        availableSpells = spells.subList(0, totalAvailable);
     }
 
     public void calculatePrice() {

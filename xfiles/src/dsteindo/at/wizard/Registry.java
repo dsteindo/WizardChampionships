@@ -3,6 +3,7 @@ package dsteindo.at.wizard;
 import java.io.IOException;
 import java.util.Properties;
 
+import dsteindo.at.wizard.database.Players;
 import dsteindo.at.wizard.database.Spells;
 import dsteindo.at.wizard.engine.Calendar;
 import dsteindo.at.wizard.engine.Shop;
@@ -25,6 +26,13 @@ public class Registry {
         Shop shop = new Shop();
         shop.initializeSpells();
         shop.calculatePrice();
+
+        Players players = new Players();
+        players.initializePlayers("");
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i + " -> " + players.getExperienceForNextLevel(i));
+        }
 
         for (int i = 0; i < 31; i++) {
             calendar.proceedToNextTournament();
